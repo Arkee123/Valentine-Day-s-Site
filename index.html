@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- 💘 Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 <title>Valentine Proposal</title>
 
 <style>
@@ -12,11 +16,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Poppins', sans-serif;
     padding: 20px;
     box-sizing: border-box;
 
-    background: 
+    background:
         linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.15)),
         url("bg.jpg") center/cover no-repeat;
 }
@@ -24,26 +28,26 @@ body {
 .container {
     text-align: center;
     width: 100%;
-    max-width: 400px;
+    max-width: 420px;
 }
 
 h1 {
+    font-family: 'Playfair Display', serif;
     color: #fff;
-    font-size: 2.2rem;
+    font-size: 3rem;
     margin-bottom: 25px;
     line-height: 1.3;
-    text-shadow: 0 0 10px rgba(0,0,0,0.3);
+    text-shadow: 0 0 14px rgba(0,0,0,0.35);
 }
 
-/* 🐱 Cat Image */
+/* 🐱 Cat image */
 .cat-img {
-    width: 220px;
+    width: 230px;
     max-width: 80%;
     height: auto;
     border-radius: 20px;
     margin-bottom: 30px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-    object-fit: cover;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
 }
 
 /* Buttons */
@@ -52,7 +56,6 @@ h1 {
     justify-content: center;
     align-items: center;
     gap: 16px;
-    position: relative;
     flex-wrap: wrap;
 }
 
@@ -64,11 +67,14 @@ button {
     cursor: pointer;
     transition: 0.25s ease;
     min-width: 120px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
     backdrop-filter: blur(4px);
 }
 
 #yesBtn {
-    background: rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.92);
     color: #ff3b5c;
 }
 
@@ -82,12 +88,31 @@ button {
     position: relative;
 }
 
+/* 🎊 Confetti */
+.confetti {
+    position: fixed;
+    top: -10px;
+    width: 8px;
+    height: 14px;
+    opacity: 0.85;
+    animation: fall linear forwards;
+    z-index: 9999;
+    border-radius: 2px;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 1;
+    }
+}
+
 /* 📱 Mobile */
 @media (max-width: 480px) {
-    h1 { font-size: 1.8rem; }
+    h1 { font-size: 2.2rem; }
 
     .cat-img {
-        width: 180px;
+        width: 190px;
         margin-bottom: 25px;
     }
 
@@ -119,6 +144,7 @@ const yesBtn = document.getElementById("yesBtn");
 
 let toggle = false;
 
+/* ❌ NO button teleport side-to-side on click */
 noBtn.addEventListener("click", () => {
     const gap = 16;
     const shift = yesBtn.offsetWidth + gap;
@@ -132,42 +158,69 @@ noBtn.addEventListener("click", () => {
     toggle = !toggle;
 });
 
+/* 🎊 Confetti function */
+function launchConfetti() {
+    const colors = ["#ff3b5c", "#ffd166", "#06d6a0", "#118ab2", "#ef476f"];
+
+    for (let i = 0; i < 120; i++) {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.animationDuration = (Math.random() * 2 + 2) + "s";
+
+        document.body.appendChild(confetti);
+
+        setTimeout(() => confetti.remove(), 4000);
+    }
+}
+
+/* 💖 YES click */
 yesBtn.addEventListener("click", () => {
-    document.body.innerHTML = `
-    <div style="
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        height:100vh;
-        background:
-            linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)),
-            url('bg.jpg') center/cover no-repeat;
-        font-family:sans-serif;
-        color:white;
-        text-align:center;
-        padding:20px;
-        box-sizing:border-box;
-    ">
-        <div style="max-width:400px;">
-            <h1 style="margin-bottom:20px;">Yayyyy!!! 💖🥰</h1>
+    launchConfetti();
 
-            <img src="cat2.jpg" 
-                 alt="Celebration cat" 
-                 style="
-                    width:220px;
-                    max-width:80%;
-                    border-radius:20px;
-                    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    setTimeout(() => {
+        document.body.innerHTML = `
+        <div style="
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+            background:
+                linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)),
+                url('bg.jpg') center/cover no-repeat;
+            font-family:'Poppins', sans-serif;
+            color:white;
+            text-align:center;
+            padding:20px;
+            box-sizing:border-box;
+        ">
+            <div style="max-width:420px;">
+                <h1 style="
+                    font-family:'Playfair Display', serif;
                     margin-bottom:20px;
-                 ">
+                    text-shadow:0 0 14px rgba(0,0,0,0.35);
+                ">
+                    Yayyyy!!! 💖🥰
+                </h1>
 
-            <p>The cat knew you'd say yes 🐱💍</p>
-        </div>
-    </div>`;
+                <img src="cat2.jpg"
+                     alt="Celebration cat"
+                     style="
+                        width:230px;
+                        max-width:80%;
+                        border-radius:20px;
+                        box-shadow:0 12px 30px rgba(0,0,0,0.35);
+                        margin-bottom:20px;
+                     ">
+
+                <p>The cat knew you'd say yes 🐱💍</p>
+            </div>
+        </div>`;
+    }, 600);
 });
 </script>
 
 </body>
 </html>
-
-
