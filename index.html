@@ -134,13 +134,33 @@ noBtn.addEventListener("click", () => {
 
 yesBtn.addEventListener("click", () => {
     document.body.innerHTML = `
-    <div style="display:flex;justify-content:center;align-items:center;height:100vh;
-    background:
-        linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)),
-        url('bg.jpg') center/cover no-repeat;
-    font-family:sans-serif;color:white;text-align:center;padding:20px;">
-        <div>
-            <h1>Yayyyy!!! 💖🥰</h1>
+    <div style="
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        height:100vh;
+        background:
+            linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)),
+            url('bg.jpg') center/cover no-repeat;
+        font-family:sans-serif;
+        color:white;
+        text-align:center;
+        padding:20px;
+        box-sizing:border-box;
+    ">
+        <div style="max-width:400px;">
+            <h1 style="margin-bottom:20px;">Yayyyy!!! 💖🥰</h1>
+
+            <img src="cat2.jpg" 
+                 alt="Celebration cat" 
+                 style="
+                    width:220px;
+                    max-width:80%;
+                    border-radius:20px;
+                    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+                    margin-bottom:20px;
+                 ">
+
             <p>The cat knew you'd say yes 🐱💍</p>
         </div>
     </div>`;
@@ -149,4 +169,5 @@ yesBtn.addEventListener("click", () => {
 
 </body>
 </html>
+
 
